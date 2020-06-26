@@ -52,6 +52,10 @@ nav div.search-container > button {
     width: 100%;
 }
 
+.fixed-nav-bar:hover {
+    box-shadow: 5px 5px 5px grey;
+}
+
 section {
     display: flex;
     width: 80%;
@@ -139,4 +143,14 @@ footer {
     color: #ff5f52;
     text-align: center;
     font-weight: bolder;
+}
+
+.comment-box textarea:hover {
+    border-radius: 3px;
+    border: 1px solid #ff5f52;
+}
+
+.comment-box input:hover {
+    border-radius: 3px;
+    border: 1px solid #ff5f52;
 }
