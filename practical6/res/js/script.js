@@ -19,18 +19,55 @@ $(function () {
     ];
     init();
 
+    // Handle click event on elements that have "add-to-cart" class
     $('.add-to-cart').click(function (event) {
+        // Get "id" attribute of the exact element that was clicked
         let id = $(event.target).attr('id');
+        // Search id in cart.selected array
         let index = cart.selected.indexOf(id);
         if (index > -1) {
             cart.selected.splice(index, 1);
+
+            cart.total -= (id === "main-button" ? item.price : items[id].price);
+
+            $(event.target)
+                .removeClass("remove-from-cart")
+                .addClass("add-to-cart")
+                .text("Add to cart");
+        } else {
+            cart.selected.push(id);
+
+            cart.total += (id === "main-button") ? item.price : items[id].price;
+
             $(event.target)
                 .removeClass("add-to-cart")
                 .addClass("remove-from-cart")
-                .text("Remove from cart");
+                .text("Remove from cart")
         }
         refreshAmount();
+        refreshTotal();
     });
+
+    // Handle keyup event on textarea that is inside an element with class "comment-box"
+    $('.comment-box textarea').keyup(function(event) {
+        // Check if enter was pressed
+        if (event.which === 13) {
+            let text = $(event.target).val();
+            let div = $('<div>').addClass('comment').text(text);
+            $('.comment-contents').append(div);
+            $(event.target).val("")
+        }
+    });
+
+    // Handle click event on an image tag inside an element with "thumbnails class"
+    $('.thumbnails img').click(function(event) {
+        let src = $(event.target).attr('src');
+        $('#item-main-image').attr('src', src);
+    });
+
+    function refreshTotal() {
+        $('#total-price').text(cart.total)
+    }
 
     function refreshAmount() {
         $('.cart-container span').text(cart.selected.length)
