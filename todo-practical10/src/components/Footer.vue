@@ -54,5 +54,21 @@ export default {
 
 .footer button {
     cursor: pointer;
+    width: 50px;
+    height: 50px;
+    font-size: 37px;
+    border: none;
+    border-radius: 100%;
+    background-color: #fbfd8a;
+    transition: box-shadow 0.65s ease;
+}
+
+.footer button:hover {
+    box-shadow: 0px 0px 10px 2px #086972;
+}
+
+#addItem {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
 }
 </style>

@@ -29,10 +29,12 @@ export default {
 
 <style>
 #app {
+  font-family: 'Montserrat', sans-serif;
   width: 500px;
   left: 50%;
   margin-left: -250px;
-  position: relative; 
+  position: relative;
+  color: #086972;
 }
 
 #innerApp {

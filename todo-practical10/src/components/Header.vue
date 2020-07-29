@@ -31,6 +31,7 @@ export default {
 .date {
     height: 50px;
     text-transform: uppercase;
+    font-family: 'Roboto', sans-serif;
 }
 
 #dayOfMonth, #dayOfWeek, #secondColumn {
@@ -40,6 +41,7 @@ export default {
 #dayOfMonth {
     font-size: 41px;
     height: 100%;
+    margin-right: 7px;
 }
 
 #month {
@@ -47,7 +49,7 @@ export default {
 }
 
 #dayOfWeek {
-    top: 20px;
+    margin-top: 13px;
     float: right;
 }
 </style>

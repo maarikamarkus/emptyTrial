@@ -43,6 +43,7 @@ export default {
 <style>
 .listRow {
     cursor: pointer;
+    padding: 5px;
 }
 
 .items ul li {
@@ -57,20 +58,22 @@ export default {
 }
 
 .checkBubble {
-    border:1px solid black;
+    border:1px solid #086972;
     border-radius: 100%;
     width: 15px;
     height: 15px;
     display: inline-block;
-    /*right: 10%;
-    position: absolute; */
     float: right;
     transition: all 0.75s ease;
 }
 
+.checkBubble:hover {
+    box-shadow: 0px 0px 10px 2px #086972;
+}
+
 .items .checkBubble.checked{
-    background-color: cornflowerblue;
-    border-color: cornflowerblue;
+    background-color: #87dfd6;
+    border-color: #87dfd6;
 }
 
 </style>
