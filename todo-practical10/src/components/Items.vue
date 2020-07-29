@@ -62,8 +62,9 @@ export default {
     width: 15px;
     height: 15px;
     display: inline-block;
-    right: 10%;
-    position: fixed;
+    /*right: 10%;
+    position: absolute; */
+    float: right;
     transition: all 0.75s ease;
 }
 

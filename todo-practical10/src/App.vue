@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <Header/>
-    <Items :items="items"/>
-    <Footer :items="items"/>
+    <div id="innerApp">
+      <Header/>
+      <Items :items="items"/>
+      <Footer :items="items"/>
+    </div>
   </div>
 </template>
 
@@ -26,5 +28,22 @@ export default {
 </script>
 
 <style>
+#app {
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
+  position: relative; 
+}
 
+#innerApp {
+  padding: 7px;
+}
+
+@media(max-width: 600px) {
+  #app {
+    width: 100%;
+    left: 0;
+    margin-left: 0;
+  }
+}
 </style>
