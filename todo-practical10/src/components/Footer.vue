@@ -1,13 +1,14 @@
 <template>
     <div class="footer">
-        <button v-on:click="showAddItem()" 
-            :class="buttonClasses">+</button>
-        <input v-model="newItem" 
-            type="text" 
-            id="addItem" 
+        <button v-on:click="showAddItem()" :class="buttonClasses">+</button>
+        <input
+            v-model="newItem"
+            type="text"
+            id="addItem"
             :class="fieldClasses"
             @keypress.enter="addItem()"
-            ref="inputField">
+            ref="inputField"
+        />
     </div>
 </template>
 
@@ -18,34 +19,51 @@ export default {
     data() {
         return {
             newItem: "",
-            fieldClasses: "hidden",
-            buttonClasses: ""
-        }
+            state: "list"
+        };
     },
-    
+
     methods: {
         showAddItem() {
-            this.fieldClasses = "";
-            this.buttonClasses = "hidden";
+            this.state = "edit";
             this.$nextTick(() => this.$refs.inputField.focus());
         },
 
         addItem() {
-            this.fieldClasses = "hidden";
-            this.buttonClasses = "";
+            this.state = "list";
             if (this.newItem !== "") {
-                this.items.push({title: this.newItem, state: false});
+                this.items.push({ title: this.newItem, state: false });
             }
             this.newItem = "";
-        }
-    } 
+        },
 
-}
+        onkeydown(e) {
+            if (e.code === "Minus" && this.state === "list") {
+                e.preventDefault();
+                this.showAddItem();
+            }
+        },
+    },
+
+    created() {
+        document.onkeydown = this.onkeydown;
+    },
+
+    computed: {
+        fieldClasses() {
+            return this.state === "list" ? "hidden" : "";
+        },
+        buttonClasses() {
+            return this.state === "edit" ? "hidden" : "";
+        },
+    }
+};
 </script>
 
 <style>
 .footer {
     text-align: center;
+    margin-top: 24px;
 }
 
 .hidden {
@@ -68,7 +86,7 @@ export default {
 }
 
 #addItem {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 20px;
 }
 </style>

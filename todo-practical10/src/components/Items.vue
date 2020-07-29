@@ -1,9 +1,12 @@
 <template>
     <div class="items">
         <ul v-for="item in sortedItems" :key="item.title">
-            <div class="listRow" v-on:click="markDoneUndone(item.title)">
-                <li :class="item.state ? 'checked' : ''">{{item.title}}</li>
-                <div :class="item.state ? 'checkBubble checked' : 'checkBubble'"></div>
+            <div class="listRow" >
+                <div class="delete">×</div>
+                <li :class="item.state ? 'checked' : ''"
+                    v-on:click="markDoneUndone(item.title)">{{item.title}}</li>
+                <div :class="item.state ? 'checkBubble checked' : 'checkBubble'"
+                    v-on:click="markDoneUndone(item.title)"></div>
             </div>
         </ul>
     </div>
@@ -46,6 +49,14 @@ export default {
     padding: 5px;
 }
 
+.items {
+    min-height: 123px;
+}
+
+.items ul {
+    padding-inline-start: 0px;
+}
+
 .items ul li {
     color: black;
     list-style: none;
@@ -57,14 +68,28 @@ export default {
     color: grey;
 }
 
+.delete {
+    font-size: 25px;
+    line-height: 15px;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    top: 5px;
+    margin-right: 11px;
+    position: relative;
+    border:1px solid #086972;
+    border-radius: 100%;
+    color: #086972;
+}
+
 .checkBubble {
     border:1px solid #086972;
     border-radius: 100%;
     width: 15px;
     height: 15px;
     display: inline-block;
-    float: right;
     transition: all 0.75s ease;
+    float: right;
 }
 
 .checkBubble:hover {

@@ -20,9 +20,11 @@ export default {
     Items,
     Footer
   },
+  
   data() {
-    return {items: [{title: "item1", state: false},
-                    {title: "item2", state: true}]}
+    return {
+      items: []
+    }
   }
 }
 </script>
