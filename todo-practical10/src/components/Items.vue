@@ -20,12 +20,6 @@
 export default {
     props: ["items"],
 
-    data() {
-        return {
-            
-        }
-    },
-
     methods: {
         findItem(title) {
             return this.items.find(x => x.title === title);
