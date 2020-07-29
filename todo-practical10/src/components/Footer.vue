@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <button v-on:click="showAddItem()" :class="buttonClasses">+</button>
+        <div id="button" v-on:click="showAddItem()" :class="buttonClasses">+</div>
         <input
             v-model="newItem"
             type="text"
@@ -66,11 +66,11 @@ export default {
     margin-top: 24px;
 }
 
-.hidden {
-    display: none;
+.footer .hidden {
+    display: none !important;
 }
 
-.footer button {
+.footer #button {
     cursor: pointer;
     width: 50px;
     height: 50px;
@@ -79,9 +79,10 @@ export default {
     border-radius: 100%;
     background-color: #fbfd8a;
     transition: box-shadow 0.65s ease;
+    display: inline-block;
 }
 
-.footer button:hover {
+.footer #button:hover {
     box-shadow: 0px 0px 10px 2px #086972;
 }
 
