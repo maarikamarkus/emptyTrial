@@ -18,9 +18,9 @@ export default {
         let date = new Date(Date.now());
         return {
             date: date.toDateString(),
-            dayOfWeek: date.toLocaleString('en-US', {weekday: 'long'}),
+            dayOfWeek: date.toLocaleString('et-EE', {weekday: 'long'}),
             dayOfMonth: date.getUTCDate(),
-            month: date.toLocaleString('en-US', {month: 'short'}),
+            month: date.toLocaleString('et-EE', {month: 'short'}),
             year: date.getFullYear()
         }
     }

@@ -73,7 +73,7 @@ export default {
     list-style: none;
     display: inline;
     font-size: 23px;
-    
+    transition: text-decoration 0.65s ease;
 }
 
 .items .checked {
