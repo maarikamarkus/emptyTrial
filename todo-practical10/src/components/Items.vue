@@ -5,7 +5,10 @@
                 <div class="delete"
                     v-on:click="deleteItem(item.title)">×</div>
                 <li :class="item.state ? 'checked' : ''"
-                    v-on:click="markDoneUndone(item.title)">{{item.title}}</li>
+                    v-on:click="markDoneUndone(item.title)">
+                    {{item.title}}
+                    <span class="lineThrough"></span>
+                </li>
                 <div :class="item.state ? 'checkBubble checked' : 'checkBubble'"
                     v-on:click="markDoneUndone(item.title)"></div>
             </div>
@@ -71,14 +74,30 @@ export default {
 .items ul li {
     color: black;
     list-style: none;
-    display: inline;
+    display: inline-block;
+    position: relative;
     font-size: 23px;
-    transition: text-decoration 0.65s ease;
 }
 
 .items .checked {
-    text-decoration: line-through;
+    /*text-decoration: line-through;*/
     color: grey;
+}
+
+.items .lineThrough {
+    width: 0;
+    transition: width 1s;
+}
+
+.items li.checked .lineThrough {
+    background-color: grey;
+    bottom: 0;
+    display: block;
+    height: 1px;
+    margin: auto 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 .delete {
