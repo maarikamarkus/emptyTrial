@@ -2,7 +2,8 @@
     <div class="items">
         <ul v-for="item in sortedItems" :key="item.title">
             <div class="listRow" >
-                <div class="delete">×</div>
+                <div class="delete"
+                    v-on:click="deleteItem(item.title)">×</div>
                 <li :class="item.state ? 'checked' : ''"
                     v-on:click="markDoneUndone(item.title)">{{item.title}}</li>
                 <div :class="item.state ? 'checkBubble checked' : 'checkBubble'"
@@ -23,9 +24,18 @@ export default {
     },
 
     methods: {
+        findItem(title) {
+            return this.items.find(x => x.title === title);
+        },
+
         markDoneUndone(title) {
-            let item = this.items.find(x => x.title === title);
+            let item = this.findItem(title);
             item.state = !item.state;
+        },
+
+        deleteItem(title) {
+            let itemIndex = this.items.findIndex(x => x.title === title);
+            this.items.splice(itemIndex, 1);
         }
     },
 
@@ -47,6 +57,7 @@ export default {
 .listRow {
     cursor: pointer;
     padding: 5px;
+    /*border: 1px solid purple;*/
 }
 
 .items {
@@ -61,6 +72,8 @@ export default {
     color: black;
     list-style: none;
     display: inline;
+    font-size: 23px;
+    
 }
 
 .items .checked {
@@ -74,7 +87,7 @@ export default {
     display: inline-block;
     width: 15px;
     height: 15px;
-    top: 5px;
+    top: 0px;
     margin-right: 11px;
     position: relative;
     border:1px solid #086972;
@@ -87,12 +100,16 @@ export default {
     border-radius: 100%;
     width: 15px;
     height: 15px;
-    display: inline-block;
-    transition: all 0.75s ease;
     float: right;
+    top: 5px;
+    position: relative;
 }
 
-.checkBubble:hover {
+.delete, .checkBubble {
+    transition: all 0.75s ease;
+}
+
+.checkBubble:hover, .delete:hover {
     box-shadow: 0px 0px 10px 2px #086972;
 }
 
