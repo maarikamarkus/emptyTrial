@@ -60,7 +60,6 @@ export default {
 .listRow {
     cursor: pointer;
     padding: 5px;
-    /*border: 1px solid purple;*/
 }
 
 .items {
@@ -80,7 +79,6 @@ export default {
 }
 
 .items .checked {
-    /*text-decoration: line-through;*/
     color: grey;
 }
 
