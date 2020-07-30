@@ -1,16 +1,16 @@
 <template>
     <div class="items">
-        <ul v-for="item in sortedItems" :key="item.title">
+        <ul v-for="item in sortedItems" :key="item.id">
             <div class="listRow" >
                 <div class="delete"
-                    v-on:click="deleteItem(item.title)">×</div>
+                    v-on:click="deleteItem(item.id)">×</div>
                 <li :class="item.state ? 'checked' : ''"
-                    v-on:click="markDoneUndone(item.title)">
+                    v-on:click="markDoneUndone(item.id)">
                     {{item.title}}
                     <span class="lineThrough"></span>
                 </li>
                 <div :class="item.state ? 'checkBubble checked' : 'checkBubble'"
-                    v-on:click="markDoneUndone(item.title)"></div>
+                    v-on:click="markDoneUndone(item.id)"></div>
             </div>
         </ul>
     </div>
@@ -23,20 +23,19 @@ export default {
     props: ["items"],
 
     methods: {
-        findItem(title) {
-            return this.items.find(x => x.title === title);
+        findItem(id) {
+            return this.items.find(x => x.id === id);
         },
 
-        markDoneUndone(title) {
-            let item = this.findItem(title);
+        markDoneUndone(id) {
+            let item = this.findItem(id);
             item.state = !item.state;
-            axios.put('http://localhost:3000/todo', item);
-
+            axios.put(`http://localhost:3000/todo/${id}`);
         },
 
-        deleteItem(title) {
-            axios.delete('http://localhost:3000/todo', {title: title});
-            let itemIndex = this.items.findIndex(x => x.title === title);
+        deleteItem(id) {
+            axios.delete(`http://localhost:3000/todo/${id}`);
+            let itemIndex = this.items.findIndex(x => x.id === id);
             this.items.splice(itemIndex, 1);
         }
     },

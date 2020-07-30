@@ -31,7 +31,6 @@ export default {
   async created() {
       let res = await axios.get('http://localhost:3000/todo');
       this.items = res.data;
-      console.log(this.items);
   },
 }
 </script>

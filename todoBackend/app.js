@@ -5,8 +5,6 @@ const mysql = require('mysql')
 const app = express()
 const port = 3000
 
-let todo = []
-
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'maarika',
