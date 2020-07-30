@@ -34,23 +34,34 @@ app.get('/todo', (req, res, next) => {
     })
 })
 
-app.post('/todo', (req, res) => {
-    console.log(req.body)
-    todo.push(req.body)
-    res.send("tööötaskiii")
+// add item to todo list
+app.post('/todo', (req, res, next) => {
+    connection.query('insert into todo set ?', req.body, function (error, results, fields) {
+        if (error) {
+            next(error)
+        }
+        res.send("insert tehtud")
+    });
 })
 
-app.delete('/todo', (req, res) => {
-    let title = req.body.title
-    let itemIndex = todo.findIndex(x => x.title === title)
-    todo.splice(itemIndex, 1)
-    res.send("wat")
+// delete item from todo list
+app.delete('/todo/:id', (req, res, next) => {
+    connection.query('delete from todo where id = ?', req.params.id, function(error, results, fields) {
+        if (error) {
+            next(error)
+        }
+        res.send("delete tehtud ehk wat")
+    })
 })
 
-app.put('/todo', (req, res) => {
-    let item = todo.find(x => x.title === req.body.title)
-    item.state = req.body.state;
-    res.send("aim scared")
+// update state of item in todo list
+app.put('/todo/:id', (req, res, next) => {
+    connection.query('update todo set state = not state where id = ?', req.params.id, function(error, results, fields) {
+        if (error) {
+            next(error)
+        }
+        res.send("state flip tehtud ehk aim scared")
+    })
 })
 
 app.listen(port, () => console.log(`ToDo app listening at http://localhost:${port}`))
