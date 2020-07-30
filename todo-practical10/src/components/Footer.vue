@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     props: ["items"],
 
@@ -30,9 +32,13 @@ export default {
         },
 
         addItem() {
+            let newItem = { title: this.newItem, state: false };
+
+            axios.post('http://localhost:3000/todo', newItem);
+
             this.state = "list";
             if (this.newItem !== "") {
-                this.items.push({ title: this.newItem, state: false });
+                this.items.push(newItem);
             }
             this.newItem = "";
         },

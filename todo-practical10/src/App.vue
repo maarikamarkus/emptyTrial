@@ -12,6 +12,7 @@
 import Header from './components/Header.vue'
 import Items from './components/Items.vue'
 import Footer from './components/Footer.vue'
+import axios from 'axios'
 
 export default {
   name: 'App',
@@ -25,7 +26,13 @@ export default {
     return {
       items: []
     }
-  }
+  },
+
+  async created() {
+      let res = await axios.get('http://localhost:3000/todo');
+      this.items = res.data;
+      console.log(this.items);
+  },
 }
 </script>
 

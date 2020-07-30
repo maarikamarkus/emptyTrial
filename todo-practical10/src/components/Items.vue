@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
     props: ["items"],
 
@@ -28,9 +30,12 @@ export default {
         markDoneUndone(title) {
             let item = this.findItem(title);
             item.state = !item.state;
+            axios.put('http://localhost:3000/todo', item);
+
         },
 
         deleteItem(title) {
+            axios.delete('http://localhost:3000/todo', {title: title});
             let itemIndex = this.items.findIndex(x => x.title === title);
             this.items.splice(itemIndex, 1);
         }
