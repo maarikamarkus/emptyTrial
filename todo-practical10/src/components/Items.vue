@@ -30,11 +30,11 @@ export default {
         markDoneUndone(id) {
             let item = this.findItem(id);
             item.state = !item.state;
-            axios.put(`http://localhost:3000/todo/${id}`);
+            axios.put(`${process.env.VUE_APP_BACKEND_URL}/todo/${id}`);
         },
 
         deleteItem(id) {
-            axios.delete(`http://localhost:3000/todo/${id}`);
+            axios.delete(`${process.env.VUE_APP_BACKEND_URL}/todo/${id}`);
             let itemIndex = this.items.findIndex(x => x.id === id);
             this.items.splice(itemIndex, 1);
         }

@@ -29,7 +29,7 @@ export default {
   },
 
   async created() {
-      let res = await axios.get('http://localhost:3000/todo');
+      let res = await axios.get(process.env.VUE_APP_BACKEND_URL + '/todo');
       this.items = res.data;
   },
 }

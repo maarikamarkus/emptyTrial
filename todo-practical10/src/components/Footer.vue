@@ -34,7 +34,7 @@ export default {
         addItem() {
             let newItem = { title: this.newItem, state: false };
 
-            axios.post('http://localhost:3000/todo', newItem);
+            axios.post(process.env.VUE_APP_BACKEND_URL + '/todo', newItem);
 
             this.state = "list";
             if (this.newItem !== "") {
