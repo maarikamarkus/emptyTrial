@@ -1,20 +1,39 @@
 const express = require('express')
+const cors = require('cors')
+const mysql = require('mysql')
+
 const app = express()
 const port = 3000
-const cors = require('cors')
 
 let todo = []
+
+const connection = mysql.createConnection({
+  host: 'localhost',
+  user: 'maarika',
+  password: 'password',
+  database: 'test'
+})
+
+connection.connect()
 
 app.use(cors())
 app.use(express.json())
 
-app.get('/todo', (req, res) => res.send(todo))
-/*app.post('/todo', {
-    title: 'backendItem',
-    state: false
-}).then(function(response){
-    console.log(response);
-})*/
+app.get('/todo', (req, res, next) => {
+    connection.query('SELECT * from todo', function (err, rows, fields) {
+        if (err) {
+            next(err)
+        } 
+      
+        let todo = [];
+        for (let row of rows) {
+            let state = row.state === 1
+            todo.push({id: row.id, title: row.title, state: state})
+        }
+        res.send(todo)
+    })
+})
+
 app.post('/todo', (req, res) => {
     console.log(req.body)
     todo.push(req.body)
