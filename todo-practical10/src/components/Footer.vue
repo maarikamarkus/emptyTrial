@@ -31,11 +31,11 @@ export default {
             this.$nextTick(() => this.$refs.inputField.focus());
         },
 
-        addItem() {
+        async addItem() {
             let newItem = { title: this.newItem, state: false };
 
-            axios.post(process.env.VUE_APP_BACKEND_URL + '/todo', newItem);
-
+            let res = await axios.post(process.env.VUE_APP_BACKEND_URL + '/todo', newItem);
+            newItem.id = parseInt(res.data);
             this.state = "list";
             if (this.newItem !== "") {
                 this.items.push(newItem);

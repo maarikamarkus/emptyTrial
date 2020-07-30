@@ -37,7 +37,7 @@ app.post('/todo', (req, res, next) => {
         if (error) {
             next(error)
         }
-        res.send("hello from the other side")
+        res.send("" + results.insertId)
     });
 })
 
