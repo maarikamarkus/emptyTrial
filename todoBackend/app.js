@@ -37,7 +37,7 @@ app.post('/todo', (req, res, next) => {
         if (error) {
             next(error)
         }
-        res.send("insert tehtud")
+        res.send("hello from the other side")
     });
 })
 
@@ -47,7 +47,7 @@ app.delete('/todo/:id', (req, res, next) => {
         if (error) {
             next(error)
         }
-        res.send("delete tehtud ehk wat")
+        res.send("wat")
     })
 })
 
@@ -57,7 +57,7 @@ app.put('/todo/:id', (req, res, next) => {
         if (error) {
             next(error)
         }
-        res.send("state flip tehtud ehk aim scared")
+        res.send("aim scared")
     })
 })
 
