@@ -9,30 +9,30 @@
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Items from './components/Items.vue'
-import Footer from './components/Footer.vue'
-import axios from 'axios'
+import axios from 'axios';
+import Header from './components/Header.vue';
+import Items from './components/Items.vue';
+import Footer from './components/Footer.vue';
 
 export default {
-  name: 'App',
-  components: {
-    Header,
-    Items,
-    Footer
-  },
-  
-  data() {
-    return {
-      items: []
-    }
-  },
+    name: 'App',
+    components: {
+        Header,
+        Items,
+        Footer,
+    },
 
-  async created() {
-      let res = await axios.get(process.env.VUE_APP_BACKEND_URL + '/todo');
-      this.items = res.data;
-  },
-}
+    data() {
+        return {
+            items: [],
+        };
+    },
+
+    async created() {
+        const res = await axios.get(`${process.env.VUE_APP_BACKEND_URL}/todo`);
+        this.items = res.data;
+    },
+};
 </script>
 
 <style>

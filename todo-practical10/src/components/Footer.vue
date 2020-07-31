@@ -13,38 +13,38 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
-    props: ["items"],
+    props: ['items'],
 
     data() {
         return {
-            newItem: "",
-            state: "list"
+            newItem: '',
+            state: 'list',
         };
     },
 
     methods: {
         showAddItem() {
-            this.state = "edit";
+            this.state = 'edit';
             this.$nextTick(() => this.$refs.inputField.focus());
         },
 
         async addItem() {
-            let newItem = { title: this.newItem, state: false };
+            const newItem = { title: this.newItem, state: false };
 
-            let res = await axios.post(process.env.VUE_APP_BACKEND_URL + '/todo', newItem);
-            newItem.id = parseInt(res.data);
-            this.state = "list";
-            if (this.newItem !== "") {
+            const res = await axios.post(`${process.env.VUE_APP_BACKEND_URL}/todo`, newItem);
+            newItem.id = parseInt(res.data, 10);
+            this.state = 'list';
+            if (this.newItem !== '') {
                 this.items.push(newItem);
             }
-            this.newItem = "";
+            this.newItem = '';
         },
 
         onkeydown(e) {
-            if (e.code === "Minus" && this.state === "list") {
+            if (e.code === 'Minus' && this.state === 'list') {
                 e.preventDefault();
                 this.showAddItem();
             }
@@ -57,12 +57,12 @@ export default {
 
     computed: {
         fieldClasses() {
-            return this.state === "list" ? "hidden" : "";
+            return this.state === 'list' ? 'hidden' : '';
         },
         buttonClasses() {
-            return this.state === "edit" ? "hidden" : "";
+            return this.state === 'edit' ? 'hidden' : '';
         },
-    }
+    },
 };
 </script>
 

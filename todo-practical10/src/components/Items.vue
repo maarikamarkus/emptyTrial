@@ -19,27 +19,27 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
-    props: ["items"],
+    props: ['items'],
 
     methods: {
         findItem(id) {
-            return this.items.find(x => x.id === id);
+            return this.items.find((x) => x.id === id);
         },
 
         markDoneUndone(id) {
-            let item = this.findItem(id);
+            const item = this.findItem(id);
             item.state = !item.state;
             axios.put(`${process.env.VUE_APP_BACKEND_URL}/todo/${id}`);
         },
 
         deleteItem(id) {
             axios.delete(`${process.env.VUE_APP_BACKEND_URL}/todo/${id}`);
-            let itemIndex = this.items.findIndex(x => x.id === id);
+            const itemIndex = this.items.findIndex((x) => x.id === id);
             this.items.splice(itemIndex, 1);
-        }
+        },
     },
 
     computed: {
@@ -47,13 +47,12 @@ export default {
             return this.items.concat().sort((a, b) => {
                 if (!a.state && b.state) {
                     return -1;
-                } else {
-                    return 0;
                 }
-            })
-        }
-    }
-}
+                return 0;
+            });
+        },
+    },
+};
 </script>
 
 <style>
@@ -99,7 +98,7 @@ export default {
 
 .items li.checked .lineThrough-enter {
     width: 0;
-} 
+}
 
 .delete {
     font-size: 25px;

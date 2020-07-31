@@ -15,16 +15,16 @@
 <script>
 export default {
     data() {
-        let date = new Date(Date.now());
+        const date = new Date(Date.now());
         return {
             date: date.toDateString(),
-            dayOfWeek: date.toLocaleString('et-EE', {weekday: 'long'}),
+            dayOfWeek: date.toLocaleString('et-EE', { weekday: 'long' }),
             dayOfMonth: date.getUTCDate(),
-            month: date.toLocaleString('et-EE', {month: 'short'}),
-            year: date.getFullYear()
-        }
-    }
-}
+            month: date.toLocaleString('et-EE', { month: 'short' }),
+            year: date.getFullYear(),
+        };
+    },
+};
 </script>
 
 <style>
