@@ -61,4 +61,8 @@ app.put('/todo/:id', (req, res, next) => {
     })
 })
 
+app.get('/todo/tere', (req, res) => {
+    res.send("tere tere vanakere, oled jõudnud saladuste laekani")
+})
+
 app.listen(port, () => console.log(`ToDo app listening at http://localhost:${port}`))
