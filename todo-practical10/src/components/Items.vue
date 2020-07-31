@@ -7,7 +7,9 @@
                 <li :class="item.state ? 'checked' : ''"
                     v-on:click="markDoneUndone(item.id)">
                     {{item.title}}
-                    <span class="lineThrough"></span>
+                    <transition name="lineThrough">
+                        <span v-if="item.state" class="lineThrough"></span>
+                    </transition>
                 </li>
                 <div :class="item.state ? 'checkBubble checked' : 'checkBubble'"
                     v-on:click="markDoneUndone(item.id)"></div>
@@ -80,11 +82,6 @@ export default {
     color: grey;
 }
 
-.items .lineThrough {
-    width: 0;
-    transition: width 1s;
-}
-
 .items li.checked .lineThrough {
     background-color: grey;
     bottom: 0;
@@ -95,6 +92,14 @@ export default {
     top: 0;
     width: 100%;
 }
+
+.items li.checked .lineThrough-enter-active {
+    transition: width 1s ease;
+}
+
+.items li.checked .lineThrough-enter {
+    width: 0;
+} 
 
 .delete {
     font-size: 25px;
