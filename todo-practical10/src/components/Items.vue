@@ -75,14 +75,15 @@ export default {
     display: inline-block;
     position: relative;
     font-size: 23px;
+    transition: color 1s ease;
 }
 
 .items .checked {
-    color: grey;
+    color: rgb(150, 150, 150);
 }
 
-.items li.checked .lineThrough {
-    background-color: grey;
+.items li .lineThrough {
+    background-color: rgb(150, 150, 150);
     bottom: 0;
     display: block;
     height: 1px;
@@ -92,11 +93,13 @@ export default {
     width: 100%;
 }
 
-.items li.checked .lineThrough-enter-active {
+.items li .lineThrough-enter-active,
+.items li .lineThrough-leave-active {
     transition: width 1s ease;
 }
 
-.items li.checked .lineThrough-enter {
+.items li .lineThrough-enter,
+.items li .lineThrough-leave-to {
     width: 0;
 }
 
